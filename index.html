@@ -17,18 +17,21 @@
     <meta property="og:url" content="https://kevintportfolio.in/">
     <meta property="og:title" content="Kevin T - Data Science & AI Developer | VIT Chennai">
     <meta property="og:description" content="Computer Science undergraduate specializing in Data Science with focus on practical AI applications, automation, and real-world problem solving. General Secretary of AI Club at VIT Chennai.">
-    <meta property="og:image" content="https://kevintportfolio.in/kev.jpg">
+    <meta property="og:image" content="https://kevintportfolio.in/assets/kev.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://kevintportfolio.in/">
     <meta property="twitter:title" content="Kevin T - Data Science & AI Developer | VIT Chennai">
     <meta property="twitter:description" content="Computer Science undergraduate specializing in Data Science with focus on practical AI applications, automation, and real-world problem solving.">
-    <meta property="twitter:image" content="https://kevintportfolio.in/kev.jpg">
+    <meta property="twitter:image" content="https://kevintportfolio.in/assets/kev.jpg">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://kevintportfolio.in/">
     
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +44,7 @@
       "@type": "Person",
       "name": "Kevin T",
       "url": "https://kevintportfolio.in",
-      "image": "https://kevintportfolio.in/kev.jpg",
+      "image": "https://kevintportfolio.in/assets/kev.jpg",
       "sameAs": [
         "https://linkedin.com/in/kevint1813",
         "https://github.com/kevint1814"
@@ -355,6 +358,120 @@
             line-height: 1.2;
         }
         
+        /* ===== EXPERIENCE SECTION ===== */
+        .experience {
+            background-color: var(--color-bg-secondary);
+        }
+
+        .experience-card {
+            background-color: var(--color-bg-tertiary);
+            border: 1px solid var(--color-border);
+            padding: var(--spacing-lg);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(30px);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .experience-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .experience-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .experience-logo {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border: 1px solid var(--color-border);
+            margin-bottom: var(--spacing-md);
+            display: block;
+            background-color: var(--color-bg-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .experience-card:hover .experience-logo {
+            border-color: var(--color-accent);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .experience-role {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .experience-status {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--color-accent);
+            white-space: nowrap;
+        }
+
+        .experience-company {
+            color: var(--color-accent);
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .experience-period {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .experience-description {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .experience-highlights {
+            list-style: none;
+            color: var(--color-text-secondary);
+            line-height: 1.9;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .experience-highlights li::before {
+            content: '→ ';
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .experience-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .experience-tech-tag {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+            letter-spacing: 0.03em;
+        }
+
         /* ===== PROJECTS SECTION ===== */
         .projects {
             background-color: var(--color-bg-secondary);
@@ -652,7 +769,7 @@
         }
         
         .leadership-highlights li::before {
-            content: '—';
+            content: '→ ';
             position: absolute;
             left: 0;
             color: var(--color-accent);
@@ -855,6 +972,7 @@
             nav ul.active li:nth-child(3) { transition-delay: 0.2s; }
             nav ul.active li:nth-child(4) { transition-delay: 0.25s; }
             nav ul.active li:nth-child(5) { transition-delay: 0.3s; }
+            nav ul.active li:nth-child(6) { transition-delay: 0.35s; }
             
             nav a {
                 font-size: 1.1rem;
@@ -899,6 +1017,7 @@
                 <span></span>
             </button>
             <ul>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#leadership">Leadership</a></li>
@@ -924,6 +1043,50 @@
         </div>
     </section>
 
+    <!-- ===== EXPERIENCE SECTION ===== -->
+    <section id="experience" class="experience">
+        <div class="section-header">
+            <div class="section-label">Industry Experience</div>
+            <h2 class="section-title">Work Experience</h2>
+        </div>
+
+        <div class="experience-card">
+            <img src="assets/movzz.png" alt="Movzz Logo" class="experience-logo">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-role">Founder's Office Intern | Technical</h3>
+                    <div class="experience-company">Movzz | "All Transport. One App." | Product & Engineering</div>
+                    <div class="experience-period">February 2026 to Present</div>
+                </div>
+                <div class="experience-status">Current</div>
+            </div>
+
+            <p class="experience-description">
+                Working directly with the Founder & CEO at an urban mobility startup building India's unified transport platform.
+                Shipping production code across frontend prototyping, backend engineering, and product strategy.
+            </p>
+
+            <ul class="experience-highlights">
+                <li>Built a 1,686-line React prototype with a 6-screen mobile app, Leaflet maps, real Chennai transit data across 20 locations and 4 transport modes (auto, cab, bike taxi, bus)</li>
+                <li>Designed reliability-centric UX with Best/Cheapest/Premium tagging, reliability score bars, and MOVZZ guarantee badges</li>
+                <li>Restored and refactored the backend fare estimation engine with real Chennai market pricing, surge logic, and tiered cab pricing (52/52 test assertions passing)</li>
+                <li>Fixed critical backend regressions: broken imports, silent runtime bugs, and auth response mismatches across services</li>
+                <li>Established PR review discipline and code quality standards for the engineering team</li>
+            </ul>
+
+            <div class="experience-tech-tags">
+                <span class="experience-tech-tag">React</span>
+                <span class="experience-tech-tag">Leaflet.js</span>
+                <span class="experience-tech-tag">Node.js</span>
+                <span class="experience-tech-tag">Express.js</span>
+                <span class="experience-tech-tag">MongoDB</span>
+                <span class="experience-tech-tag">REST APIs</span>
+                <span class="experience-tech-tag">Jest</span>
+                <span class="experience-tech-tag">Git</span>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== PROJECTS SECTION ===== -->
     <section id="projects" class="projects">
         <div class="section-header">
@@ -941,31 +1104,41 @@
                     <div class="project-status">Deployed</div>
                 </div>
                 
-                <img src="sb_land.png" alt="Seaside Beacon Interface" class="project-image">
+                <a href="https://seasidebeacon.com" target="_blank"><img src="assets/sb_land.png" alt="Seaside Beacon Interface" class="project-image"></a>
                 
                 <p class="project-description">
-                    Production-grade full-stack AI system with stunnning UI and UX work for sunrise visibility prediction and photography-oriented weather intelligence. 
-                    Analyzes 47+ atmospheric parameters across Chennai beaches to generate confidence scores (0-100%), device-specific 
-                    photography recommendations (DSLR & smartphone), and automated daily email notifications. Featured in IEEE technical documentation.
+                    India's first native sunrise quality forecast, started with Chennai beaches. Analyzes 9 atmospheric factors
+                    (including satellite aerosol data) across 4 beaches using a v5.2 scoring algorithm with a 3-tier AI failover system
+                    (Gemini 2.5 Flash, Groq Llama 3.3 70B, Gemini Flash-Lite). Delivers 0 to 100 sunrise scores with DSLR &amp; mobile camera settings,
+                    daily 4 AM email forecasts, a premium tier with Razorpay payments, Telegram AI assistant, and an interactive community photo gallery.
                 </p>
                 
                 <div class="project-tech">
                     <span class="tech-tag">Node.js</span>
                     <span class="tech-tag">Express.js</span>
-                    <span class="tech-tag">Groq AI (Llama 3.3)</span>
+                    <span class="tech-tag">Gemini 2.5 Flash</span>
+                    <span class="tech-tag">Groq (Llama 3.3 70B)</span>
                     <span class="tech-tag">MongoDB Atlas</span>
-                    <span class="tech-tag">AccuWeather API</span>
-                    <span class="tech-tag">SendGrid</span>
+                    <span class="tech-tag">AccuWeather + Open-Meteo</span>
+                    <span class="tech-tag">Brevo + SendGrid</span>
+                    <span class="tech-tag">Razorpay</span>
+                    <span class="tech-tag">Telegram Bot</span>
+                    <span class="tech-tag">Firebase FCM</span>
+                    <span class="tech-tag">Cloudflare</span>
                 </div>
                 
                 <div class="project-metrics">
                     <div class="metric">
-                        <div class="metric-value">47+</div>
-                        <div class="metric-label">Parameters</div>
+                        <div class="metric-value">9</div>
+                        <div class="metric-label">Scoring Factors</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">3-Tier</div>
+                        <div class="metric-label">AI Failover</div>
                     </div>
                     <div class="metric">
                         <div class="metric-value">4</div>
-                        <div class="metric-label">Beach Coverage</div>
+                        <div class="metric-label">Beaches</div>
                     </div>
                     <div class="metric">
                         <div class="metric-value">95+</div>
@@ -974,14 +1147,14 @@
                 </div>
                 
                 <p class="project-description" style="margin-top: var(--spacing-md); font-size: 0.9rem;">
-                    <strong>Key Features:</strong> AI-powered photography insights, sunrise visibility scoring algorithm, 
-                    automated 4 AM IST email notifications, mobile-first responsive UI, zero-cost infrastructure deployment, 
-                    and 99.9% monitored uptime.
+                    <strong>Key Features:</strong> v5.2 scoring algorithm with AOD as top-weighted factor, 3-tier AI failover (Gemini/Groq/rule-based),
+                    automated 4 AM email forecasts via Brevo + SendGrid, premium tier with Razorpay (7-day calendar, Telegram AI chatbot, push notifications),
+                    community photo gallery via Cloudinary, liquid glass UI with procedural sunrise animation, and 99.9% monitored uptime at ~INR 275/mo.
                 </p>
                 
                 <div class="project-links">
                     <a href="https://seasidebeacon.com" target="_blank" class="project-link">Live Demo</a>
-                    <a href="https://github.com/kevint1814/Seaside-Beacon-v2" target="_blank" class="project-link">View Code</a>
+                    <a href="https://github.com/kevint1814/PUBLIC_VIEW_OF_SEASIDE_BEACON" target="_blank" class="project-link">View Repo</a>
                 </div>
             </div>
             
@@ -994,7 +1167,7 @@
                     <div class="project-status">Deployed</div>
                 </div>
                 
-                <img src="mys.jpeg" alt="Mystique Log Analysis Interface" class="project-image">
+                <a href="https://mystique-log-analysis.streamlit.app" target="_blank"><img src="assets/mys.jpeg" alt="Mystique Log Analysis Interface" class="project-image"></a>
                 
                 <p class="project-description">
                     Automated telecom network outage analysis tool developed during Nokia & Prodapt's National Level Hackathon (Dataset'24). 
@@ -1043,7 +1216,7 @@
             <!-- Cert 1: Google AI Essentials -->
             <div class="cert-card">
                 <a href="https://coursera.org/share/a5648662e72f1cee0ddaf4194614e2b6" target="_blank" rel="noopener noreferrer" class="cert-link">
-                    <img src="aie.jpg" alt="Google AI Essentials Certificate" class="cert-image">
+                    <img src="assets/aie.jpg" alt="Google AI Essentials Certificate" class="cert-image">
                 </a>
                 <h3 class="cert-title">AI Essentials</h3>
                 <div class="cert-issuer">Google via Coursera</div>
@@ -1053,7 +1226,7 @@
             <!-- Cert 2: Machine Learning -->
             <div class="cert-card">
                 <a href="https://coursera.org/share/4c364468fdcba6b7734f1fd3f9ad135c" target="_blank" rel="noopener noreferrer" class="cert-link">
-                    <img src="ml.jpg" alt="Machine Learning Certificate" class="cert-image">
+                    <img src="assets/ml.jpg" alt="Machine Learning Certificate" class="cert-image">
                 </a>
                 <h3 class="cert-title">Machine Learning</h3>
                 <div class="cert-issuer">University of London via Coursera</div>
@@ -1063,7 +1236,7 @@
             <!-- Cert 3: DevOps -->
             <div class="cert-card">
                 <a href="https://coursera.org/share/0e0ca882de880c2d499ee293a802b442" target="_blank" rel="noopener noreferrer" class="cert-link">
-                    <img src="devops.jpg" alt="DevOps & Software Engineering Certificate" class="cert-image">
+                    <img src="assets/devops.jpg" alt="DevOps & Software Engineering Certificate" class="cert-image">
                 </a>
                 <h3 class="cert-title">DevOps & Software Engineering</h3>
                 <div class="cert-issuer">IBM via Coursera</div>
@@ -1073,26 +1246,26 @@
             <!-- Cert 4: Microsoft 365 -->
             <div class="cert-card">
                 <a href="https://www.udemy.com/certificate/UC-b3b87e91-ac43-49e9-841a-b7c1ba0e5b17/" target="_blank" rel="noopener noreferrer" class="cert-link">
-                    <img src="MS Office 365.jpg" alt="Microsoft 365 Essentials Certificate" class="cert-image">
+                    <img src="assets/MS Office 365.jpg" alt="Microsoft 365 Essentials Certificate" class="cert-image">
                 </a>
                 <h3 class="cert-title">Microsoft 365 Essentials</h3>
-                <div class="cert-issuer">Udemy - David Millard</div>
+                <div class="cert-issuer">Udemy | David Millard</div>
                 <div class="cert-status">Completed</div>
             </div>
             
             <!-- Cert 5: Python -->
             <div class="cert-card">
                 <a href="https://www.udemy.com/certificate/UC-21f68afd-f7db-476a-acb9-46481f7bae59/" target="_blank" rel="noopener noreferrer" class="cert-link">
-                    <img src="PythonMegaCourse_Certificate.jpg" alt="Python Mega Course Certificate" class="cert-image">
+                    <img src="assets/PythonMegaCourse_Certificate.jpg" alt="Python Mega Course Certificate" class="cert-image">
                 </a>
                 <h3 class="cert-title">Python Mega Course</h3>
-                <div class="cert-issuer">Udemy - Ardit Sulce</div>
+                <div class="cert-issuer">Udemy | Ardit Sulce</div>
                 <div class="cert-status">Completed</div>
             </div>
             
             <!-- Cert 6: AI Tools -->
             <div class="cert-card">
-                <img src="IMG_4500.jpeg" alt="AI Tools Workshop Certificate" class="cert-image">
+                <img src="assets/IMG_4500.jpeg" alt="AI Tools Workshop Certificate" class="cert-image">
                 <h3 class="cert-title">AI Tools Workshop</h3>
                 <div class="cert-issuer">Be10x</div>
                 <div class="cert-status">Completed</div>
@@ -1110,11 +1283,11 @@
         <div class="leadership-grid">
             <!-- Leadership 1: AI Club -->
             <div class="leadership-card">
-                <img src="aic.jpg" alt="AI Club General Secretary" class="leadership-image">
+                <img src="assets/aic.jpg" alt="AI Club General Secretary" class="leadership-image">
                 <div class="leadership-content">
                     <h3 class="leadership-role">General Secretary</h3>
-                    <div class="leadership-org">Artificial Intelligence Club - VIT Chennai</div>
-                    <div class="leadership-period">September 2025 - Present</div>
+                    <div class="leadership-org">Artificial Intelligence Club | VIT Chennai</div>
+                    <div class="leadership-period">September 2025 to Present</div>
                     <ul class="leadership-highlights">
                         <li>Leading strategic planning and execution of AI-focused events, workshops, and technical sessions</li>
                         <li>Coordinating between core team leaders, faculty advisors, and external speakers</li>
@@ -1126,11 +1299,11 @@
             
             <!-- Leadership 2: IQAC -->
             <div class="leadership-card">
-                <img src="iqac.JPG" alt="IQAC Student Chapter Member" class="leadership-image">
+                <img src="assets/iqac.JPG" alt="IQAC Student Chapter Member" class="leadership-image">
                 <div class="leadership-content">
                     <h3 class="leadership-role">Member of IQAC Student Chapter</h3>
-                    <div class="leadership-org">Internal Quality Assurance Cell - VIT Chennai</div>
-                    <div class="leadership-period">January 2026 - Present</div>
+                    <div class="leadership-org">Internal Quality Assurance Cell | VIT Chennai</div>
+                    <div class="leadership-period">January 2026 to Present</div>
                     <ul class="leadership-highlights">
                         <li>Selected by department head to represent university in institutional quality assurance</li>
                         <li>Contributing to quality improvement strategies for academic and administrative processes</li>
@@ -1141,11 +1314,11 @@
             
             <!-- Leadership 3: Program Representative -->
             <div class="leadership-card">
-                <img src="pr.JPG" alt="Program Representative" class="leadership-image">
+                <img src="assets/pr.JPG" alt="Program Representative" class="leadership-image">
                 <div class="leadership-content">
                     <h3 class="leadership-role">Program Representative</h3>
-                    <div class="leadership-org">BSc in CS with Data Science - VIT Chennai</div>
-                    <div class="leadership-period">July 2024 - Present</div>
+                    <div class="leadership-org">BSc in CS with Data Science | VIT Chennai</div>
+                    <div class="leadership-period">July 2024 to Present</div>
                     <ul class="leadership-highlights">
                         <li>Acting as liaison between students and faculty for academic matters</li>
                         <li>Facilitating effective communication and managing academic concerns</li>
@@ -1156,11 +1329,11 @@
             
             <!-- Leadership 4: Operations Team -->
             <div class="leadership-card">
-                <img src="aico.JPG" alt="AI Club Operations Team" class="leadership-image">
+                <img src="assets/aico.JPG" alt="AI Club Operations Team" class="leadership-image">
                 <div class="leadership-content">
                     <h3 class="leadership-role">Operations & Management Team</h3>
-                    <div class="leadership-org">Artificial Intelligence Club - VIT Chennai</div>
-                    <div class="leadership-period">January 2025 - September 2025</div>
+                    <div class="leadership-org">Artificial Intelligence Club | VIT Chennai</div>
+                    <div class="leadership-period">January 2025 to September 2025</div>
                     <ul class="leadership-highlights">
                         <li>Planned and organized AI-related events and workshops</li>
                         <li>Contributed to operational management and outreach activities</li>
@@ -1179,7 +1352,7 @@
         </div>
         
         <div class="about-content">
-            <img src="kev.jpg" alt="Kevin T - Data Science Student" class="about-image">
+            <img src="assets/kev.jpg" alt="Kevin T - Data Science Student" class="about-image">
             
             <p class="about-text">
                 I'm a Computer Science undergraduate at VIT Chennai specializing in Data Science, with a strong focus on 
@@ -1237,7 +1410,7 @@
                     <span>+91 63810 84571</span>
                 </a>
                 <!-- RESUME DOWNLOAD BUTTON -->
-                <a href="Kevin T_CV.pdf" download class="contact-link">
+                <a href="docs/PDF-Kevin T_CV.pdf" download class="contact-link">
                     <span>📄</span>
                     <span>Download Resume</span>
                 </a>
@@ -1293,7 +1466,7 @@
         }, observerOptions);
         
         // Observe all animated elements
-        document.querySelectorAll('.project-card, .cert-card, .leadership-card').forEach(el => {
+        document.querySelectorAll('.experience-card, .project-card, .cert-card, .leadership-card').forEach(el => {
             observer.observe(el);
         });
         
