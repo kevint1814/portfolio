@@ -35,6 +35,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Preload critical assets -->
+    <link rel="preload" href="bg.webp" as="image" type="image/webp">
+    <link rel="preload" href="assets/kev.webp" as="image" type="image/webp">
+
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
@@ -79,8 +83,9 @@
         *{-webkit-backface-visibility:hidden;backface-visibility:hidden}
         p{text-align:justify}
 
-        /* BG — oversized for parallax movement */
-        .bg{position:fixed;inset:-20px;z-index:0;background:url('bg.jpg') center/cover no-repeat;will-change:transform;transform:translate3d(0,0,0) scale(1.03)}
+        /* BG — oversized for parallax movement, inline blur placeholder for instant paint */
+        .bg{position:fixed;inset:-20px;z-index:0;background:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABsSFBcUERsXFhceHBsgKEIrKCUlKFE6PTBCYFVlZF9VXVtqeJmBanGQc1tdhbWGkJ6jq62rZ4C8ybqmx5moq6T/2wBDARweHigjKE4rK06kbl1upKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKT/wAARCAAVACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoWmRRyaqTagiHANY0l8cYLVXM245zTSEdJb3iy1a3iuUW+8ocGrcGpkr1pNDRzzSMeppBIw70UVQhC5PU1cs2J4oopAf/2Q==') center/cover no-repeat;will-change:transform;transform:translate3d(0,0,0) scale(1.03)}
+        .bg.loaded{background-image:url('bg.webp')}
         .bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.15)}
 
         /* Frost texture mixin */
@@ -280,6 +285,25 @@
         .form-status.success{display:block;color:var(--text-muted)}
         .form-status.error{display:block;color:var(--text-muted)}
 
+        /* SPLASH SCREEN */
+        .splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(8,12,20,0.18);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);transition:opacity 0.6s var(--ease),backdrop-filter 0.6s var(--ease),-webkit-backdrop-filter 0.6s var(--ease)}
+        .splash.exit{opacity:0;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0);pointer-events:none}
+        .splash-content{text-align:center;position:relative}
+        .splash-line{display:block;overflow:hidden}
+        .splash-greeting{font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);opacity:0;transform:translate3d(0,15px,0);animation:splashTextIn 0.7s var(--ease) 0.2s forwards}
+        .splash-name{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;letter-spacing:-0.04em;color:var(--text-primary);margin-top:0.6rem;opacity:0;transform:translate3d(0,20px,0);animation:splashTextIn 0.7s var(--ease) 0.45s forwards}
+        .splash-divider{width:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);margin:1.1rem auto;opacity:0;transform:scaleX(0);animation:splashDivIn 0.6s var(--ease) 0.7s forwards}
+        .splash-tagline{font-size:0.82rem;font-weight:400;color:rgba(255,255,255,0.4);letter-spacing:0.02em;opacity:0;transform:translate3d(0,12px,0);animation:splashTextIn 0.6s var(--ease) 0.85s forwards}
+        .splash-loader{margin-top:2.5rem;width:100%;height:1px;background:rgba(255,255,255,0.08);border-radius:1px;overflow:hidden;opacity:0;animation:splashTextIn 0.4s var(--ease) 1s forwards}
+        .splash-loader-bar{width:0%;height:100%;background:linear-gradient(90deg,rgba(255,255,255,0.15),rgba(255,255,255,0.45));border-radius:1px;transition:width 0.3s var(--ease)}
+        @keyframes splashTextIn{to{opacity:1;transform:translate3d(0,0,0)}}
+        @keyframes splashDivIn{to{opacity:1;transform:scaleX(1)}}
+
+        /* Hide app until splash done — display:none prevents any bleed-through */
+        .app.hidden{display:none!important}
+        .app.entering{display:flex;opacity:0;transform:translate3d(0,18px,0);filter:blur(6px)}
+        .app.visible{opacity:1;transform:translate3d(0,0,0);filter:blur(0);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease),filter 0.6s var(--ease)}
+
         /* MOBILE CAPSULE */
         .mobile-capsule{display:none;position:fixed;top:0.6rem;left:50%;transform:translateX(-50%);z-index:100;padding:0.4rem 0.7rem 0.4rem 0.4rem;background:rgba(15,20,30,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:30px;align-items:center;gap:0.55rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
         .capsule-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center top}
@@ -303,7 +327,8 @@
             .app{padding:0.9rem;padding-top:4.2rem;align-items:flex-start}
             .card-main{max-width:none;height:calc(100vh - 10rem);border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:rgba(15,20,30,0.32);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
             .sidebar{display:none}
-            .mobile-capsule{display:flex}
+            .mobile-capsule{display:flex;opacity:0;visibility:hidden;transition:opacity 0.4s var(--ease) 0.2s,visibility 0s 0.6s}
+            .mobile-capsule.visible{opacity:1;visibility:visible;transition:opacity 0.4s var(--ease) 0.2s,visibility 0s 0s}
             .mobile-nav-overlay{display:block;pointer-events:none}
             .mobile-nav-overlay.active{pointer-events:auto}
             .mobile-nav-panel{display:flex}
@@ -339,11 +364,22 @@
     </style>
 </head>
 <body>
-    <div class="bg"></div>
+    <div class="bg" id="bg"></div>
+
+    <!-- Splash Screen -->
+    <div class="splash" id="splash">
+        <div class="splash-content">
+            <span class="splash-greeting">Welcome to</span>
+            <div class="splash-name">Kevin's Portfolio</div>
+            <div class="splash-divider"></div>
+            <div class="splash-tagline">Data Science & AI Developer</div>
+            <div class="splash-loader"><div class="splash-loader-bar" id="splash-bar"></div></div>
+        </div>
+    </div>
 
     <!-- Mobile Capsule -->
     <div class="mobile-capsule" id="mobile-capsule">
-        <img src="assets/kev.jpg" alt="Kevin T" class="capsule-avatar">
+        <img src="assets/kev.webp" alt="Kevin T" class="capsule-avatar">
         <span class="capsule-name">Kevin T</span>
         <button class="capsule-toggle" id="capsule-toggle" aria-label="Menu">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -365,11 +401,11 @@
     </div>
 
     <!-- App -->
-    <div class="app">
+    <div class="app hidden">
         <div class="card-main frost">
             <div class="sidebar">
                 <div class="sidebar-profile">
-                    <img src="assets/kev.jpg" alt="Kevin T" class="sidebar-avatar">
+                    <img src="assets/kev.webp" alt="Kevin T" class="sidebar-avatar">
                     <div>
                         <div class="sidebar-name">Kevin T</div>
                         <div class="sidebar-title">Data Science & AI Developer</div>
@@ -404,7 +440,7 @@
                             <p>I'm a Computer Science undergraduate at VIT Chennai specializing in Data Science, with a strong focus on practical AI applications and automation. Currently building production systems at Movzz as a Founder's Office Intern (Technical), working directly with the CEO on India's unified transport platform.</p>
                             <p>Beyond academics, I'm passionate about exploring how AI can solve real world problems, optimizing workflows through intelligent tools, and sharing knowledge through public speaking and presentations. I believe in ensuring my presence adds value and contributes meaningfully to collaborative success.</p>
                         </div>
-                        <img src="assets/kev.jpg" alt="Kevin T" class="about-photo" loading="lazy">
+                        <img src="assets/kev.webp" alt="Kevin T" class="about-photo" loading="lazy">
                     </div>
                     <div class="about-columns">
                         <div>
@@ -443,7 +479,7 @@
                     <h1 class="section-heading">Work Experience</h1>
                     <div class="exp-card">
                         <div class="exp-header">
-                            <img src="assets/movzz.png" alt="Movzz" class="exp-logo" loading="lazy">
+                            <img src="assets/movzz.webp" alt="Movzz" class="exp-logo" loading="lazy">
                             <div class="exp-info">
                                 <div class="exp-title">Movzz | Founder's Office Intern (Technical)</div>
                                 <div class="exp-meta">February 2026 to Present &middot; Product & Engineering</div>
@@ -476,11 +512,11 @@
                         <p class="section-count">2 Projects</p>
                         <div class="projects-grid">
                             <div class="project-card" data-project="seaside">
-                                <img src="assets/sb_land.png" alt="Seaside Beacon" class="project-img" loading="lazy">
+                                <img src="assets/sb_land.webp" alt="Seaside Beacon" class="project-img" loading="lazy">
                                 <div class="project-info"><div class="project-name">Seaside Beacon</div><div class="project-tags">Node.js, Express, Gemini, MongoDB</div></div>
                             </div>
                             <div class="project-card" data-project="mystique">
-                                <img src="assets/mys.jpeg" alt="Mystique Log Analysis" class="project-img" loading="lazy">
+                                <img src="assets/mys.webp" alt="Mystique Log Analysis" class="project-img" loading="lazy">
                                 <div class="project-info"><div class="project-name">Mystique Log Analysis</div><div class="project-tags">Python, LLM APIs, Streamlit</div></div>
                             </div>
                         </div>
@@ -488,7 +524,7 @@
                     <div class="project-detail" id="detail-seaside">
                         <button class="project-back" data-action="back-to-projects">&larr; Back to Projects</button>
                         <h1 class="section-heading">Seaside Beacon</h1>
-                        <img src="assets/sb_land.png" alt="Seaside Beacon" class="project-detail-img" loading="lazy">
+                        <img src="assets/sb_land.webp" alt="Seaside Beacon" class="project-detail-img" loading="lazy">
                         <p class="project-detail-desc">India's first native sunrise quality forecast, started with Chennai beaches. Analyzes 9 atmospheric factors using a 3 tier AI failover system (Gemini 2.5 Flash, Groq Llama 3.3 70B, Gemini Flash Lite). Delivers daily 4 AM email forecasts, premium tier with Razorpay payments, and Telegram AI assistant.</p>
                         <div class="metrics-row">
                             <div class="metric-card"><div class="metric-val">9</div><div class="metric-lbl">Scoring Factors</div></div>
@@ -505,7 +541,7 @@
                     <div class="project-detail" id="detail-mystique">
                         <button class="project-back" data-action="back-to-projects">&larr; Back to Projects</button>
                         <h1 class="section-heading">Mystique Log Analysis</h1>
-                        <img src="assets/mys.jpeg" alt="Mystique" class="project-detail-img" loading="lazy">
+                        <img src="assets/mys.webp" alt="Mystique" class="project-detail-img" loading="lazy">
                         <p class="project-detail-desc">Automated telecom network outage analysis tool developed during Nokia & Prodapt's National Level Hackathon (Dataset'24). Analyzes telecom logs and identifies root causes of outages using LLM integrations, achieving 40% reduction in manual diagnostic time.</p>
                         <div class="metrics-row">
                             <div class="metric-card"><div class="metric-val">40%</div><div class="metric-lbl">Time Reduction</div></div>
@@ -525,22 +561,22 @@
                     <h1 class="section-heading">Certifications</h1>
                     <p class="section-count">6 Certifications</p>
                     <div class="certs-grid">
-                        <div class="cert-card"><img src="assets/aie.jpg" alt="AI Essentials" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">AI Essentials</div><div class="cert-issuer">Google via Coursera</div></div><a href="https://coursera.org/share/a5648662e72f1cee0ddaf4194614e2b6" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
-                        <div class="cert-card"><img src="assets/ml.jpg" alt="Machine Learning" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">Machine Learning</div><div class="cert-issuer">University of London via Coursera</div></div><a href="https://coursera.org/share/4c364468fdcba6b7734f1fd3f9ad135c" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
-                        <div class="cert-card"><img src="assets/devops.jpg" alt="DevOps" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">DevOps & Software Engineering</div><div class="cert-issuer">IBM via Coursera</div></div><a href="https://coursera.org/share/0e0ca882de880c2d499ee293a802b442" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
-                        <div class="cert-card"><img src="assets/MS Office 365.jpg" alt="Microsoft 365" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">Microsoft 365 Essentials</div><div class="cert-issuer">Udemy | David Millard</div></div><a href="https://www.udemy.com/certificate/UC-b3b87e91-ac43-49e9-841a-b7c1ba0e5b17/" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
-                        <div class="cert-card"><img src="assets/PythonMegaCourse_Certificate.jpg" alt="Python" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">Python Mega Course</div><div class="cert-issuer">Udemy | Ardit Sulce</div></div><a href="https://www.udemy.com/certificate/UC-21f68afd-f7db-476a-acb9-46481f7bae59/" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
-                        <div class="cert-card"><img src="assets/IMG_4500.jpeg" alt="AI Tools" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">AI Tools Workshop</div><div class="cert-issuer">Be10x</div></div></div>
+                        <div class="cert-card"><img src="assets/aie.webp" alt="AI Essentials" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">AI Essentials</div><div class="cert-issuer">Google via Coursera</div></div><a href="https://coursera.org/share/a5648662e72f1cee0ddaf4194614e2b6" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
+                        <div class="cert-card"><img src="assets/ml.webp" alt="Machine Learning" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">Machine Learning</div><div class="cert-issuer">University of London via Coursera</div></div><a href="https://coursera.org/share/4c364468fdcba6b7734f1fd3f9ad135c" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
+                        <div class="cert-card"><img src="assets/devops.webp" alt="DevOps" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">DevOps & Software Engineering</div><div class="cert-issuer">IBM via Coursera</div></div><a href="https://coursera.org/share/0e0ca882de880c2d499ee293a802b442" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
+                        <div class="cert-card"><img src="assets/MS Office 365.webp" alt="Microsoft 365" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">Microsoft 365 Essentials</div><div class="cert-issuer">Udemy | David Millard</div></div><a href="https://www.udemy.com/certificate/UC-b3b87e91-ac43-49e9-841a-b7c1ba0e5b17/" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
+                        <div class="cert-card"><img src="assets/PythonMegaCourse_Certificate.webp" alt="Python" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">Python Mega Course</div><div class="cert-issuer">Udemy | Ardit Sulce</div></div><a href="https://www.udemy.com/certificate/UC-21f68afd-f7db-476a-acb9-46481f7bae59/" target="_blank" class="cert-overlay"><span>View Certificate</span></a></div>
+                        <div class="cert-card"><img src="assets/IMG_4500.webp" alt="AI Tools" class="cert-img" loading="lazy"><div class="cert-info"><div class="cert-name">AI Tools Workshop</div><div class="cert-issuer">Be10x</div></div></div>
                     </div>
                 </div>
 
                 <!-- LEADERSHIP -->
                 <div class="section" id="sec-leadership">
                     <h1 class="section-heading">Leadership Experience</h1>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">GS</div><div class="lead-info"><div class="lead-role">General Secretary</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Sep 2025 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aic.jpg" alt="AI Club" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Leading strategic planning and execution of AI focused events, workshops, and technical sessions</li><li>Coordinating between core team leaders, faculty advisors, and external speakers</li><li>Managing club communications and decision making processes</li><li>Driving student engagement and promoting AI awareness across campus</li></ul></div></div></div></div>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">IQ</div><div class="lead-info"><div class="lead-role">IQAC Student Chapter Member</div><div class="lead-org">Internal Quality Assurance Cell | VIT Chennai</div></div><span class="lead-period">Jan 2026 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/iqac.JPG" alt="IQAC" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Selected by department head to represent university in institutional quality assurance</li><li>Contributing to quality improvement strategies for academic and administrative processes</li><li>Managing Quality Week events and quality driven activities for 2026</li></ul></div></div></div></div>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">PR</div><div class="lead-info"><div class="lead-role">Program Representative</div><div class="lead-org">BSc in CS with Data Science | VIT Chennai</div></div><span class="lead-period">Jul 2024 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/pr.JPG" alt="Program Rep" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Acting as liaison between students and faculty for academic matters</li><li>Facilitating effective communication and managing academic concerns</li><li>Representing peer interests in program development decisions</li></ul></div></div></div></div>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">OP</div><div class="lead-info"><div class="lead-role">Operations & Management Team</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Jan to Sep 2025</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aico.JPG" alt="AI Club Ops" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Planned and organized AI related events and workshops</li><li>Contributed to operational management and outreach activities</li><li>Served as student coordinator for successful AI based Marketing workshop</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">GS</div><div class="lead-info"><div class="lead-role">General Secretary</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Sep 2025 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aic.webp" alt="AI Club" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Leading strategic planning and execution of AI focused events, workshops, and technical sessions</li><li>Coordinating between core team leaders, faculty advisors, and external speakers</li><li>Managing club communications and decision making processes</li><li>Driving student engagement and promoting AI awareness across campus</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">IQ</div><div class="lead-info"><div class="lead-role">IQAC Student Chapter Member</div><div class="lead-org">Internal Quality Assurance Cell | VIT Chennai</div></div><span class="lead-period">Jan 2026 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/iqac.webp" alt="IQAC" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Selected by department head to represent university in institutional quality assurance</li><li>Contributing to quality improvement strategies for academic and administrative processes</li><li>Managing Quality Week events and quality driven activities for 2026</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">PR</div><div class="lead-info"><div class="lead-role">Program Representative</div><div class="lead-org">BSc in CS with Data Science | VIT Chennai</div></div><span class="lead-period">Jul 2024 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/pr.webp" alt="Program Rep" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Acting as liaison between students and faculty for academic matters</li><li>Facilitating effective communication and managing academic concerns</li><li>Representing peer interests in program development decisions</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">OP</div><div class="lead-info"><div class="lead-role">Operations & Management Team</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Jan to Sep 2025</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aico.webp" alt="AI Club Ops" class="lead-img" loading="lazy"><ul class="lead-highlights"><li>Planned and organized AI related events and workshops</li><li>Contributed to operational management and outreach activities</li><li>Served as student coordinator for successful AI based Marketing workshop</li></ul></div></div></div></div>
                 </div>
 
                 <!-- CONTACT -->
@@ -878,6 +914,63 @@
                 scrollY=-frac*MAX_SHIFT*1.5;
                 updateTarget();
             },{passive:true});
+        })();
+
+        /* ── SPLASH SCREEN & BG LOADER ── */
+        (function(){
+            const splash=document.getElementById('splash');
+            const splashBar=document.getElementById('splash-bar');
+            const bg=document.getElementById('bg');
+            const app=document.querySelector('.app');
+            const capsule=document.querySelector('.mobile-capsule');
+            let progress=0;
+
+            /* Animate progress bar smoothly */
+            function setProgress(val){
+                progress=val;
+                splashBar.style.width=val+'%';
+            }
+
+            const SPLASH_DURATION=3000;
+            const startTime=performance.now();
+
+            /* Load bg image in background */
+            const bgImg=new Image();
+            bgImg.onload=function(){bg.classList.add('loaded')};
+            bgImg.src='bg.webp';
+
+            /* Smooth eased progress that hits 100% exactly at SPLASH_DURATION */
+            let simInterval=setInterval(()=>{
+                const elapsed=performance.now()-startTime;
+                const t=Math.min(elapsed/SPLASH_DURATION,1);
+                /* Ease-out curve: fast start, smooth deceleration to 100% */
+                const eased=1-Math.pow(1-t,2.5);
+                setProgress(Math.min(eased*100,100));
+                if(t>=1)clearInterval(simInterval);
+            },30);
+
+            /* Exit after 3s */
+            setTimeout(()=>{
+                clearInterval(simInterval);
+                setProgress(100);
+                setTimeout(exitSplash,300);
+            },SPLASH_DURATION);
+
+            function exitSplash(){
+                /* 1. Fade out splash */
+                splash.classList.add('exit');
+                /* 2. After splash fades, swap app from hidden→entering→visible */
+                setTimeout(()=>{
+                    splash.remove();
+                    app.classList.remove('hidden');
+                    app.classList.add('entering');
+                    /* Force paint before triggering transition */
+                    requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+                        app.classList.add('visible');
+                        if(capsule)capsule.classList.add('visible');
+                    })});
+                },600);
+            }
         })();
     </script>
 </body>
