@@ -80,7 +80,7 @@
         }
 
         html,body{height:100%;overflow:hidden;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text-primary);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-        *{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+        .project-card,.cert-card,.stat-card,.nav-item,.mobile-nav-item,.contact-pill,.exp-card,.lead-card,.bg{-webkit-backface-visibility:hidden;backface-visibility:hidden}
         p{text-align:justify}
 
         /* BG — oversized for parallax movement, inline blur placeholder for instant paint */
@@ -89,14 +89,17 @@
         .bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.15)}
 
         /* Frost texture mixin */
-        .frost{position:relative}
-        .frost::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");background-size:200px 200px}
+        /* Frost: blurred bg clone inside card + dark overlay + noise */
+        .frost{position:relative;isolation:isolate}
+        .frost-bg{position:absolute;inset:-60px;pointer-events:none;z-index:-2;background:url('bg.webp') center/cover no-repeat;filter:blur(7px);will-change:transform;transform:translate3d(0,0,0) scale(1.1)}
+        .frost::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;background:rgba(8,12,20,0.5)}
+        .frost-noise{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");background-size:200px 200px}
 
         /* APP SHELL */
         .app{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:100vh;padding:2rem}
 
-        .card-main{display:flex;width:100%;max-width:1100px;height:min(85vh,720px);background:rgba(15,20,30,0.45);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-        .card-main::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,0.12) 30%,rgba(255,255,255,0.06) 50%,rgba(255,255,255,0.12) 70%,transparent 95%);z-index:10}
+        .card-main{display:flex;width:100%;max-width:1100px;height:min(85vh,720px);background:transparent;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.06)}
+        .card-main-highlight{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,0.12) 30%,rgba(255,255,255,0.06) 50%,rgba(255,255,255,0.12) 70%,transparent 95%);z-index:10;pointer-events:none}
 
         /* SIDEBAR */
         .sidebar{width:260px;min-width:260px;padding:2rem 1.5rem;background:rgba(15,20,30,0.55);border-right:1px solid var(--border-light);display:flex;flex-direction:column;position:relative;z-index:1}
@@ -120,10 +123,11 @@
 
         /* CONTENT */
         .content{flex:1;overflow-y:auto;overflow-x:hidden;padding:2.5rem;position:relative;z-index:1;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
-        .content::-webkit-scrollbar{width:4px}
-        .content::-webkit-scrollbar-track{background:transparent}
-        .content::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:4px;transition:background 0.3s}
-        .content::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+        .content::-webkit-scrollbar{width:3px}
+        .content::-webkit-scrollbar-track{background:transparent;margin:12px 0}
+        .content::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:3px}
+        .content::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.1)}
+        .content{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.06) transparent}
 
         .section{display:none;opacity:0;filter:blur(12px);transform:translate3d(0,20px,0)}
         .section.active{display:block}
@@ -174,7 +178,11 @@
         .exp-title{font-size:0.9rem;font-weight:600;letter-spacing:-0.01em}
         .exp-meta{font-size:0.72rem;color:var(--text-secondary);margin-top:0.2rem}
         .exp-badge{font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:0.3rem 0.65rem;border-radius:20px;background:rgba(255,255,255,0.08);color:var(--text-secondary)}
-        .exp-toggle{font-size:0.72rem;color:var(--text-muted);margin-left:0.75rem;flex-shrink:0}
+        .expand-chevron{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);flex-shrink:0;margin-left:0.5rem;transition:transform 0.4s var(--ease),background 0.4s var(--ease),border-color 0.4s var(--ease)}
+        .expand-chevron svg{width:14px;height:14px;color:var(--text-muted);transition:color 0.3s var(--ease)}
+        .exp-header:hover .expand-chevron,.lead-header:hover .expand-chevron{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.1)}
+        .exp-header:hover .expand-chevron svg,.lead-header:hover .expand-chevron svg{color:var(--text-secondary)}
+        .expand-chevron.open{transform:rotate(180deg)}
         .exp-body{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows 0.4s var(--ease) 0.12s;will-change:grid-template-rows}
         .exp-body.open{grid-template-rows:1fr;transition:grid-template-rows 0.45s var(--ease)}
         .exp-body-wrap{min-height:0;opacity:0;filter:blur(6px);transform:translate3d(0,6px,0);transition:opacity 0.25s var(--ease),filter 0.25s var(--ease),transform 0.25s var(--ease)}
@@ -325,7 +333,7 @@
         /* RESPONSIVE */
         @media(max-width:900px){
             .app{padding:0.9rem;padding-top:4.2rem;align-items:flex-start}
-            .card-main{max-width:none;height:calc(100vh - 10rem);border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:rgba(15,20,30,0.32);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+            .card-main{max-width:none;height:calc(100vh - 10rem);border-radius:22px;border:1px solid rgba(255,255,255,0.08)}
             .sidebar{display:none}
             .mobile-capsule{display:flex;opacity:0;visibility:hidden;transition:opacity 0.4s var(--ease) 0.2s,visibility 0s 0.6s}
             .mobile-capsule.visible{opacity:1;visibility:visible;transition:opacity 0.4s var(--ease) 0.2s,visibility 0s 0s}
@@ -403,6 +411,9 @@
     <!-- App -->
     <div class="app hidden">
         <div class="card-main frost">
+            <div class="frost-bg" id="frost-bg"></div>
+            <div class="card-main-highlight"></div>
+            <div class="frost-noise"></div>
             <div class="sidebar">
                 <div class="sidebar-profile">
                     <img src="assets/kev.webp" alt="Kevin T" class="sidebar-avatar">
@@ -485,7 +496,7 @@
                                 <div class="exp-meta">February 2026 to Present &middot; Product & Engineering</div>
                             </div>
                             <span class="exp-badge">Current</span>
-                            <span class="exp-toggle">more</span>
+                            <span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                         </div>
                         <div class="exp-body">
                             <div class="exp-body-wrap"><div class="exp-body-inner">
@@ -573,10 +584,10 @@
                 <!-- LEADERSHIP -->
                 <div class="section" id="sec-leadership">
                     <h1 class="section-heading">Leadership Experience</h1>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">GS</div><div class="lead-info"><div class="lead-role">General Secretary</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Sep 2025 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aic.webp" alt="AI Club" class="lead-img"><ul class="lead-highlights"><li>Leading strategic planning and execution of AI focused events, workshops, and technical sessions</li><li>Coordinating between core team leaders, faculty advisors, and external speakers</li><li>Managing club communications and decision making processes</li><li>Driving student engagement and promoting AI awareness across campus</li></ul></div></div></div></div>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">IQ</div><div class="lead-info"><div class="lead-role">IQAC Student Chapter Member</div><div class="lead-org">Internal Quality Assurance Cell | VIT Chennai</div></div><span class="lead-period">Jan 2026 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/iqac.webp" alt="IQAC" class="lead-img"><ul class="lead-highlights"><li>Selected by department head to represent university in institutional quality assurance</li><li>Contributing to quality improvement strategies for academic and administrative processes</li><li>Managing Quality Week events and quality driven activities for 2026</li></ul></div></div></div></div>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">PR</div><div class="lead-info"><div class="lead-role">Program Representative</div><div class="lead-org">BSc in CS with Data Science | VIT Chennai</div></div><span class="lead-period">Jul 2024 to Present</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/pr.webp" alt="Program Rep" class="lead-img"><ul class="lead-highlights"><li>Acting as liaison between students and faculty for academic matters</li><li>Facilitating effective communication and managing academic concerns</li><li>Representing peer interests in program development decisions</li></ul></div></div></div></div>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">OP</div><div class="lead-info"><div class="lead-role">Operations & Management Team</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Jan to Sep 2025</span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aico.webp" alt="AI Club Ops" class="lead-img"><ul class="lead-highlights"><li>Planned and organized AI related events and workshops</li><li>Contributed to operational management and outreach activities</li><li>Served as student coordinator for successful AI based Marketing workshop</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">GS</div><div class="lead-info"><div class="lead-role">General Secretary</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Sep 2025 to Present</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aic.webp" alt="AI Club" class="lead-img"><ul class="lead-highlights"><li>Leading strategic planning and execution of AI focused events, workshops, and technical sessions</li><li>Coordinating between core team leaders, faculty advisors, and external speakers</li><li>Managing club communications and decision making processes</li><li>Driving student engagement and promoting AI awareness across campus</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">IQ</div><div class="lead-info"><div class="lead-role">IQAC Student Chapter Member</div><div class="lead-org">Internal Quality Assurance Cell | VIT Chennai</div></div><span class="lead-period">Jan 2026 to Present</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/iqac.webp" alt="IQAC" class="lead-img"><ul class="lead-highlights"><li>Selected by department head to represent university in institutional quality assurance</li><li>Contributing to quality improvement strategies for academic and administrative processes</li><li>Managing Quality Week events and quality driven activities for 2026</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">PR</div><div class="lead-info"><div class="lead-role">Program Representative</div><div class="lead-org">BSc in CS with Data Science | VIT Chennai</div></div><span class="lead-period">Jul 2024 to Present</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/pr.webp" alt="Program Rep" class="lead-img"><ul class="lead-highlights"><li>Acting as liaison between students and faculty for academic matters</li><li>Facilitating effective communication and managing academic concerns</li><li>Representing peer interests in program development decisions</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">OP</div><div class="lead-info"><div class="lead-role">Operations & Management Team</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Jan to Sep 2025</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aico.webp" alt="AI Club Ops" class="lead-img"><ul class="lead-highlights"><li>Planned and organized AI related events and workshops</li><li>Contributed to operational management and outreach activities</li><li>Served as student coordinator for successful AI based Marketing workshop</li></ul></div></div></div></div>
                 </div>
 
                 <!-- CONTACT -->
@@ -689,8 +700,8 @@
             const body=header.nextElementSibling;
             if(!body||(! body.classList.contains('exp-body')&&!body.classList.contains('lead-body')))return;
             body.classList.toggle('open');
-            const t=header.querySelector('.exp-toggle');
-            if(t)t.textContent=body.classList.contains('open')?'less':'more';
+            const chev=header.querySelector('.expand-chevron');
+            if(chev){body.classList.contains('open')?chev.classList.add('open'):chev.classList.remove('open')}
         }
 
         /* ── PROJECTS ── */
@@ -859,6 +870,7 @@
         (function(){
             const bg=document.querySelector('.bg');
             if(!bg)return;
+            const frostBg=document.getElementById('frost-bg');
             const MAX_SHIFT=12; /* px */
             let targetX=0,targetY=0,currentX=0,currentY=0;
             let rafId;
@@ -869,6 +881,7 @@
                 currentX=lerp(currentX,targetX,0.06);
                 currentY=lerp(currentY,targetY,0.06);
                 bg.style.transform=`translate3d(${currentX}px,${currentY}px,0) scale(1.03)`;
+                if(frostBg)frostBg.style.transform=`translate3d(${currentX}px,${currentY}px,0) scale(1.1)`;
                 rafId=requestAnimationFrame(tick);
             }
             rafId=requestAnimationFrame(tick);
