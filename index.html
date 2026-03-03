@@ -76,13 +76,12 @@
             --ease:cubic-bezier(0.16,1,0.3,1)
         }
 
-        html{height:100%;overflow:clip}
-        body{height:100%;overflow:clip;position:fixed;width:100%;margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text-primary);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+        html,body{height:100%;overflow:hidden;margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text-primary);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
         .project-card,.cert-card,.stat-card,.nav-item,.mobile-nav-item,.contact-pill,.exp-card,.lead-card,.bg{-webkit-backface-visibility:hidden;backface-visibility:hidden}
         p{text-align:justify}
 
         /* BG — oversized for parallax movement, inline blur placeholder for instant paint */
-        .bg{position:fixed;inset:-40px;z-index:0;background:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABsSFBcUERsXFhceHBsgKEIrKCUlKFE6PTBCYFVlZF9VXVtqeJmBanGQc1tdhbWGkJ6jq62rZ4C8ybqmx5moq6T/2wBDARweHigjKE4rK06kbl1upKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKT/wAARCAAVACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoWmRRyaqTagiHANY0l8cYLVXM245zTSEdJb3iy1a3iuUW+8ocGrcGpkr1pNDRzzSMeppBIw70UVQhC5PU1cs2J4oopAf/2Q==') center/cover no-repeat;will-change:transform;transform:translate3d(0,0,0) scale(1.06)}
+        .bg{position:fixed;inset:-20px;z-index:0;background:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABsSFBcUERsXFhceHBsgKEIrKCUlKFE6PTBCYFVlZF9VXVtqeJmBanGQc1tdhbWGkJ6jq62rZ4C8ybqmx5moq6T/2wBDARweHigjKE4rK06kbl1upKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKT/wAARCAAVACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoWmRRyaqTagiHANY0l8cYLVXM245zTSEdJb3iy1a3iuUW+8ocGrcGpkr1pNDRzzSMeppBIw70UVQhC5PU1cs2J4oopAf/2Q==') center/cover no-repeat;will-change:transform;transform:translate3d(0,0,0) scale(1.03)}
         .bg.loaded{background-image:url('bg.webp')}
         .bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.15)}
 
@@ -94,7 +93,7 @@
         .frost-noise{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");background-size:200px 200px}
 
         /* APP SHELL */
-        .app{position:fixed;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;padding:2rem;overflow:hidden}
+        .app{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:100vh;padding:2rem}
 
         .card-main{display:flex;width:100%;max-width:1100px;height:min(85vh,720px);background:transparent;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.06)}
         .card-main-highlight{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,0.12) 30%,rgba(255,255,255,0.06) 50%,rgba(255,255,255,0.12) 70%,transparent 95%);z-index:10;pointer-events:none}
@@ -735,12 +734,30 @@
         const contentEl=document.querySelector('.content');
         const isMobile=window.matchMedia('(max-width:900px)').matches||'ontouchstart' in window;
 
-        /* ── KILL NATIVE SCROLL — manual pipe to .content (prevents Safari rubber-band) ── */
+        /* ── CUSTOM RUBBER-BAND SCROLL (prevents Safari overscroll moving bg) ── */
         if(!isMobile){
+            let overshoot=0,releasing=false;
+            const MAX_OVER=60,SPRING=0.08;
             window.addEventListener('wheel',e=>{
                 e.preventDefault();
-                contentEl.scrollTop+=e.deltaY;
+                const top=contentEl.scrollTop;
+                const max=contentEl.scrollHeight-contentEl.clientHeight;
+                const atTop=top<=0&&e.deltaY<0;
+                const atBottom=top>=max-1&&e.deltaY>0;
+                if(atTop||atBottom){
+                    overshoot+=e.deltaY*0.3;
+                    overshoot=Math.max(-MAX_OVER,Math.min(MAX_OVER,overshoot));
+                    if(!releasing){releasing=true;springBack()}
+                }else{
+                    contentEl.scrollTop+=e.deltaY;
+                }
             },{passive:false});
+            function springBack(){
+                overshoot*=(1-SPRING);
+                contentEl.style.transform='translateY('+(-overshoot)+'px)';
+                if(Math.abs(overshoot)<0.5){overshoot=0;contentEl.style.transform='';releasing=false;return}
+                requestAnimationFrame(springBack);
+            }
         }
 
         /* ── SECTION SWITCHING ── */
@@ -1054,7 +1071,7 @@
             function tick(){
                 currentX=lerp(currentX,targetX,0.06);
                 currentY=lerp(currentY,targetY,0.06);
-                bg.style.transform=`translate3d(${currentX}px,${currentY}px,0) scale(1.06)`;
+                bg.style.transform=`translate3d(${currentX}px,${currentY}px,0) scale(1.03)`;
                 if(frostBg)frostBg.style.transform=`translate3d(${currentX}px,${currentY}px,0) scale(1.1)`;
                 rafId=requestAnimationFrame(tick);
             }
