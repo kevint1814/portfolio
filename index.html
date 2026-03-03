@@ -39,9 +39,6 @@
     <link rel="preload" href="bg.webp" as="image" type="image/webp">
     <link rel="preload" href="assets/kev.webp" as="image" type="image/webp">
 
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -225,6 +222,37 @@
         .metric-card{text-align:center;padding:0.85rem;background:var(--glass-light);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
         .metric-val{font-size:1rem;font-weight:700;letter-spacing:-0.02em}
         .metric-lbl{font-size:0.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-top:0.15rem}
+        .snap-gallery{margin-bottom:1.25rem;position:relative;overflow:clip}
+        .snap-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:0.65rem}
+        .snap-track{display:flex;gap:0.65rem;padding-bottom:0.5rem;will-change:transform;transition:transform 0.4s var(--ease)}
+        @media(hover:none){.snap-track{overflow-x:auto;-webkit-overflow-scrolling:touch;transition:none}}
+        .snap-track::-webkit-scrollbar{display:none}
+        .snap-thumb{flex:0 0 auto;width:260px;border-radius:var(--radius-sm);border:1px solid var(--border-light);overflow:clip;cursor:pointer;transition:border-color 0.3s var(--ease),transform 0.3s var(--ease),box-shadow 0.3s var(--ease);background:rgba(0,0,0,0.15)}
+        .snap-thumb:hover{border-color:rgba(255,255,255,0.15);transform:translate3d(0,-2px,0);box-shadow:0 8px 24px rgba(0,0,0,0.25)}
+        .snap-thumb:active{transform:scale(0.97);transition-duration:0.08s}
+        .snap-thumb img{width:100%;height:auto;display:block}
+        .snap-caption{font-size:0.6rem;color:var(--text-muted);padding:0.4rem 0.55rem;letter-spacing:0.02em}
+        .snap-arrow{position:absolute;top:50%;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4;transform:translateY(-50%);transition:background 0.3s var(--ease),border-color 0.3s var(--ease),opacity 0.3s var(--ease);opacity:0.5;pointer-events:auto}
+        .snap-gallery:hover .snap-arrow{opacity:1}
+        @media(hover:none){.snap-arrow{display:none}}
+        .snap-arrow:hover{background:rgba(0,0,0,0.7);border-color:rgba(255,255,255,0.2)}
+        .snap-arrow:active{transform:translateY(-50%) scale(0.9);transition-duration:0.08s}
+        .snap-arrow svg{width:14px;height:14px;color:rgba(255,255,255,0.8)}
+        .snap-arrow.left{left:0}
+        .snap-arrow.right{right:0}
+        .snap-viewer{position:absolute;left:0;width:100%;z-index:10;background:rgba(8,12,20,0.92);display:none;flex-direction:column;align-items:center;justify-content:center;border-radius:inherit;overflow:hidden;transform-origin:center bottom;opacity:0;transform:scale(0.3) translateY(40%);transition:opacity 0.45s var(--ease),transform 0.45s var(--ease)}
+        .snap-viewer.visible{display:flex}
+        .snap-viewer.open{opacity:1;transform:scale(1) translateY(0)}
+        .snap-viewer img{max-width:94%;max-height:calc(100% - 60px);object-fit:contain;border-radius:var(--radius-sm);box-shadow:0 16px 48px rgba(0,0,0,0.4)}
+        .snap-viewer-bar{display:flex;align-items:center;justify-content:space-between;width:94%;padding:0.6rem 0;flex-shrink:0}
+        .snap-viewer-caption{font-size:0.68rem;color:var(--text-muted);letter-spacing:0.02em}
+        .snap-viewer-close{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.3s var(--ease)}
+        .snap-viewer-close:hover{background:rgba(255,255,255,0.12)}
+        .snap-viewer-close svg{width:14px;height:14px;color:var(--text-secondary)}
+        .snap-viewer-nav{display:flex;gap:0.5rem;align-items:center}
+        .snap-viewer-nav button{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.3s var(--ease);color:var(--text-secondary)}
+        .snap-viewer-nav button:hover{background:rgba(255,255,255,0.12)}
+        .snap-viewer-nav svg{width:13px;height:13px}
         .project-links{display:flex;gap:0.75rem}
         .project-link{flex:1;text-align:center;padding:0.7rem;border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);text-decoration:none;font-size:0.78rem;font-weight:500;transition:background 0.3s var(--ease),transform 0.3s var(--ease),box-shadow 0.3s var(--ease),border-color 0.3s var(--ease)}
         .project-link:hover{background:rgba(255,255,255,0.06);transform:translate3d(0,-2px,0);box-shadow:0 4px 15px rgba(0,0,0,0.12)}
@@ -349,6 +377,7 @@
             .lead-body-inner{flex-direction:column;align-items:center}
             .lead-img{width:100%;max-width:200px;height:auto}
             .project-links{flex-direction:column}
+            .snap-thumb{width:200px}
             .form-row{grid-template-columns:1fr}
             .contact-pills{gap:0.4rem}
             .project-card,.cert-card,.exp-header,.lead-header,.project-back,.contact-pill,.form-submit{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
@@ -443,6 +472,17 @@
             </div>
 
             <div class="content">
+                <div class="snap-viewer" id="snap-viewer">
+                    <div class="snap-viewer-bar">
+                        <span class="snap-viewer-caption" id="snap-viewer-cap"></span>
+                        <div class="snap-viewer-nav">
+                            <button id="snap-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+                            <button id="snap-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></button>
+                            <div class="snap-viewer-close" id="snap-viewer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                        </div>
+                    </div>
+                    <img src="" alt="Screenshot" id="snap-viewer-img">
+                </div>
                 <!-- ABOUT -->
                 <div class="section active revealed" id="sec-about">
                     <h1 class="section-heading">About Kevin T</h1>
@@ -520,7 +560,7 @@
                 <div class="section" id="sec-projects">
                     <div id="projects-list">
                         <h1 class="section-heading">Projects & Case Studies</h1>
-                        <p class="section-count">2 Projects</p>
+                        <p class="section-count">3 Projects</p>
                         <div class="projects-grid">
                             <div class="project-card" data-project="seaside">
                                 <img src="assets/sb_land.webp" alt="Seaside Beacon" class="project-img">
@@ -529,6 +569,10 @@
                             <div class="project-card" data-project="mystique">
                                 <img src="assets/mys.webp" alt="Mystique Log Analysis" class="project-img">
                                 <div class="project-info"><div class="project-name">Mystique Log Analysis</div><div class="project-tags">Python, LLM APIs, Streamlit</div></div>
+                            </div>
+                            <div class="project-card" data-project="portfolio">
+                                <img src="assets/snaps/pf-main.webp" alt="This Portfolio" class="project-img">
+                                <div class="project-info"><div class="project-name">This Portfolio</div><div class="project-tags">HTML5, CSS3, JavaScript, Glassmorphism</div></div>
                             </div>
                         </div>
                     </div>
@@ -544,6 +588,20 @@
                             <div class="metric-card"><div class="metric-val">95+</div><div class="metric-lbl">Lighthouse</div></div>
                         </div>
                         <div class="tag-row" style="margin-bottom:1.25rem"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Gemini</span><span class="tag">Groq</span><span class="tag">MongoDB</span><span class="tag">Razorpay</span><span class="tag">Firebase</span><span class="tag">Cloudflare</span></div>
+                        <div class="snap-gallery">
+                            <div class="snap-label">Screenshots</div>
+                            <div class="snap-track">
+                                <div class="snap-thumb"><img src="assets/snaps/sb-landing.webp" alt="Landing Page"><div class="snap-caption">Landing Page</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-forecast.webp" alt="Sunrise Forecast"><div class="snap-caption">Sunrise Forecast</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-analysis.webp" alt="Atmospheric Analysis"><div class="snap-caption">Atmospheric Analysis</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-photographers.webp" alt="For Photographers"><div class="snap-caption">For Photographers</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-mornings.webp" alt="Real Mornings"><div class="snap-caption">Real Mornings</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-craft.webp" alt="Our Craft"><div class="snap-caption">Our Craft</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-community.webp" alt="Community"><div class="snap-caption">Community</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-story.webp" alt="The Story"><div class="snap-caption">The Story</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/sb-footer.webp" alt="Closing"><div class="snap-caption">Closing</div></div>
+                            </div>
+                        </div>
                         <div class="project-links">
                             <a href="https://seasidebeacon.com" target="_blank" class="project-link primary">Live Demo</a>
                             <a href="https://github.com/kevint1814/PUBLIC_VIEW_OF_SEASIDE_BEACON" target="_blank" class="project-link">View Repo</a>
@@ -560,9 +618,40 @@
                             <div class="metric-card"><div class="metric-val">100+</div><div class="metric-lbl">Teams</div></div>
                         </div>
                         <div class="tag-row" style="margin-bottom:1.25rem"><span class="tag">Python</span><span class="tag">LLM APIs</span><span class="tag">Streamlit</span><span class="tag">AI Automation</span></div>
+                        <div class="snap-gallery">
+                            <div class="snap-label">Screenshots</div>
+                            <div class="snap-track">
+                                <div class="snap-thumb"><img src="assets/snaps/mys-home.webp" alt="Dashboard Home"><div class="snap-caption">Dashboard Home</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/mys-anomaly.webp" alt="Anomaly Detection"><div class="snap-caption">Anomaly Detection</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/mys-rootcause.webp" alt="Root Cause Analysis"><div class="snap-caption">Root Cause Analysis</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/mys-viz.webp" alt="Visualizations"><div class="snap-caption">Visualizations</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/mys-chatbot.webp" alt="AI Chatbot"><div class="snap-caption">AI Chatbot</div></div>
+                            </div>
+                        </div>
                         <div class="project-links">
                             <a href="https://mystique-log-analysis.streamlit.app" target="_blank" class="project-link primary">Live Demo</a>
                             <a href="https://github.com/kevint1814/Mystique-Log-Dashboard" target="_blank" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                    <!-- PORTFOLIO PROJECT -->
+                    <div class="project-detail" id="detail-portfolio">
+                        <button class="project-back" data-action="back-to-projects">&larr; Back to Projects</button>
+                        <h1 class="section-heading">This Portfolio</h1>
+                        <img src="assets/snaps/pf-splash.webp" alt="Portfolio" class="project-detail-img">
+                        <p class="project-detail-desc">A handcrafted single-page portfolio featuring a glassmorphism card design with parallax background, blur-reveal section transitions, CSS grid expand/collapse animations, a premium splash screen with synced progress bar, and real blurred background frost rendering. Built as one self-contained HTML file with zero dependencies.</p>
+                        <div class="metrics-row">
+                            <div class="metric-card"><div class="metric-val">1</div><div class="metric-lbl">Single File</div></div>
+                            <div class="metric-card"><div class="metric-val">0</div><div class="metric-lbl">Dependencies</div></div>
+                            <div class="metric-card"><div class="metric-val">97%</div><div class="metric-lbl">Image Optimized</div></div>
+                            <div class="metric-card"><div class="metric-val">95+</div><div class="metric-lbl">Lighthouse</div></div>
+                        </div>
+                        <div class="tag-row" style="margin-bottom:1.25rem"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Glassmorphism</span><span class="tag">Responsive</span></div>
+                        <div class="snap-gallery">
+                            <div class="snap-label">Screenshots</div>
+                            <div class="snap-track">
+                                <div class="snap-thumb"><img src="assets/snaps/pf-splash.webp" alt="Splash Screen"><div class="snap-caption">Splash Screen</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/pf-main.webp" alt="Main View"><div class="snap-caption">Main View</div></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -642,18 +731,8 @@
     </div>
 
     <script>
-        /* ── LENIS SMOOTH SCROLL (desktop only) ── */
         const contentEl=document.querySelector('.content');
         const isMobile=window.matchMedia('(max-width:900px)').matches||'ontouchstart' in window;
-        let lenis;
-        if(!isMobile){
-            try{
-                lenis=new Lenis({wrapper:contentEl,content:contentEl,lerp:0.08,smoothWheel:true,wheelMultiplier:0.8});
-                function raf(time){lenis.raf(time);requestAnimationFrame(raf)}
-                requestAnimationFrame(raf);
-            }catch(e){/* Lenis CDN fail — native scroll still works */}
-        }
-        contentEl.style.webkitOverflowScrolling='touch';
 
         /* ── SECTION SWITCHING ── */
         let sectionSwitching=false;
@@ -682,7 +761,7 @@
                 document.querySelectorAll(`.mobile-nav-item[data-section="${id}"]`).forEach(n=>n.classList.add('active'));
                 closeMobileNav();
                 contentEl.scrollTop=0;
-                if(lenis)lenis.scrollTo(0,{immediate:true});
+                contentEl.scrollTop=0;
                 if(id==='projects'){const pl=document.getElementById('projects-list');pl.style.display='';pl.style.opacity='1';const pg=pl.querySelector('.projects-grid');if(pg){pg.style.opacity='1'}pl.querySelectorAll('.project-card').forEach(c=>{c.style.opacity='1'});document.querySelectorAll('.project-detail').forEach(d=>{d.classList.remove('active','visible')})}
                 if(id==='about')animateCounters();
                 sectionSwitching=false;
@@ -721,7 +800,7 @@
             detail.querySelectorAll(':scope > *').forEach(child=>{child.style.animation='none';child.offsetHeight;child.style.animation=''});
             detail.classList.add('active');
             contentEl.scrollTop=0;
-            if(lenis)lenis.scrollTo(0,{immediate:true});
+            contentEl.scrollTop=0;
             requestAnimationFrame(()=>{detail.classList.add('visible')});
         }
         function hideProject(){
@@ -754,7 +833,7 @@
                 setTimeout(()=>{h.style.transition='';h.style.filter='';h.style.transform=''},500);
             });
             contentEl.scrollTop=0;
-            if(lenis)lenis.scrollTo(0,{immediate:true});
+            contentEl.scrollTop=0;
         }
 
         /* ── UNIFIED CLICK DELEGATION (fixes mobile routing) ── */
@@ -767,9 +846,93 @@
             const backBtn=e.target.closest('[data-action="back-to-projects"]');
             if(backBtn){e.preventDefault();e.stopPropagation();hideProject();return}
 
+            /* Snap viewer — open */
+            const thumb=e.target.closest('.snap-thumb');
+            if(thumb){e.preventDefault();e.stopPropagation();openSnapViewer(thumb);return}
+
+            /* Snap scroll arrows */
+            const arrow=e.target.closest('.snap-arrow');
+            if(arrow){e.preventDefault();e.stopPropagation();slideTrack(arrow.closest('.snap-gallery').querySelector('.snap-track'),arrow.classList.contains('left')?-1:1);return}
+
+            /* Snap viewer — close */
+            if(e.target.closest('#snap-viewer-close')){e.preventDefault();e.stopPropagation();closeSnapViewer();return}
+            /* Snap viewer — prev/next */
+            if(e.target.closest('#snap-prev')){e.preventDefault();e.stopPropagation();stepSnapViewer(-1);return}
+            if(e.target.closest('#snap-next')){e.preventDefault();e.stopPropagation();stepSnapViewer(1);return}
+            /* Click outside image in viewer — close */
+            if(snapViewer.classList.contains('open')&&e.target.id==='snap-viewer'){e.preventDefault();e.stopPropagation();closeSnapViewer();return}
+
             /* Expand headers */
             const header=e.target.closest('.exp-header,.lead-header');
             if(header){e.preventDefault();e.stopPropagation();toggleExpand(header);return}
+        });
+
+        /* ── SNAP TRACK SLIDE (transform-based, zero scroll containers) ── */
+        function slideTrack(track,dir){
+            const gap=parseFloat(getComputedStyle(track).gap)||10;
+            const step=260+gap;
+            const cur=parseFloat(track.dataset.tx||0);
+            const max=track.scrollWidth-track.parentElement.clientWidth;
+            const next=Math.max(0,Math.min(cur+dir*step,max));
+            track.dataset.tx=next;
+            track.style.transform='translateX(-'+next+'px)';
+        }
+
+        /* ── SNAP VIEWER (in-card, Genie effect) ── */
+        const snapViewer=document.getElementById('snap-viewer');
+        const snapViewerImg=document.getElementById('snap-viewer-img');
+        const snapViewerCap=document.getElementById('snap-viewer-cap');
+        let snapThumbs=[];
+        let snapIdx=0;
+        function openSnapViewer(thumbEl){
+            const track=thumbEl.closest('.snap-track');
+            snapThumbs=Array.from(track.querySelectorAll('.snap-thumb'));
+            snapIdx=snapThumbs.indexOf(thumbEl);
+            /* Position viewer to cover visible viewport of content */
+            const st=contentEl.scrollTop;
+            const ch=contentEl.clientHeight;
+            snapViewer.style.top=st+'px';
+            snapViewer.style.height=ch+'px';
+            /* Genie origin from clicked thumb */
+            const rect=thumbEl.getBoundingClientRect();
+            const contentRect=contentEl.getBoundingClientRect();
+            const ox=((rect.left+rect.width/2)-contentRect.left)/contentRect.width*100;
+            const oy=((rect.top+rect.height/2)-contentRect.top)/ch*100;
+            snapViewer.style.transformOrigin=ox+'% '+oy+'%';
+            loadSnap(snapIdx);
+            snapViewer.classList.add('visible');
+            requestAnimationFrame(()=>requestAnimationFrame(()=>snapViewer.classList.add('open')));
+        }
+        function closeSnapViewer(){
+            snapViewer.classList.remove('open');
+            snapViewer.addEventListener('transitionend',function h(){snapViewer.removeEventListener('transitionend',h);snapViewer.classList.remove('visible')},{once:true});
+        }
+        function loadSnap(i){
+            if(i<0||i>=snapThumbs.length)return;
+            snapIdx=i;
+            const t=snapThumbs[i];
+            snapViewerImg.src=t.querySelector('img').src;
+            const cap=t.querySelector('.snap-caption');
+            snapViewerCap.textContent=cap?cap.textContent:'';
+        }
+        function stepSnapViewer(dir){
+            const next=snapIdx+dir;
+            if(next>=0&&next<snapThumbs.length)loadSnap(next);
+        }
+        document.addEventListener('keydown',function(e){
+            if(!snapViewer.classList.contains('open'))return;
+            if(e.key==='Escape')closeSnapViewer();
+            if(e.key==='ArrowLeft')stepSnapViewer(-1);
+            if(e.key==='ArrowRight')stepSnapViewer(1);
+        });
+
+        /* ── SNAP SCROLL ARROWS + wheel fix ── */
+        document.querySelectorAll('.snap-gallery').forEach(g=>{
+            const leftA=document.createElement('div');leftA.className='snap-arrow left';
+            leftA.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+            const rightA=document.createElement('div');rightA.className='snap-arrow right';
+            rightA.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>';
+            g.appendChild(leftA);g.appendChild(rightA);
         });
 
         /* ── MOBILE NAV ── */
