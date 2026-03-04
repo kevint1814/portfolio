@@ -222,6 +222,15 @@
         .metric-card{text-align:center;padding:0.85rem;background:var(--glass-light);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
         .metric-val{font-size:1rem;font-weight:700;letter-spacing:-0.02em}
         .metric-lbl{font-size:0.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-top:0.15rem}
+        .work-timeline{position:relative;padding-left:1.25rem;margin:1.25rem 0}
+        .work-timeline::before{content:'';position:absolute;left:0;top:0.35rem;bottom:0.35rem;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.12) 10%,rgba(255,255,255,0.12) 90%,transparent)}
+        .wt-item{position:relative;padding-bottom:1rem}
+        .wt-item:last-child{padding-bottom:0}
+        .wt-item::before{content:'';position:absolute;left:-1.25rem;top:0.45rem;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.1);transform:translateX(-3px)}
+        .wt-item:first-child::before{background:var(--text-primary);border-color:rgba(255,255,255,0.3);box-shadow:0 0 8px rgba(255,255,255,0.15)}
+        .wt-date{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:0.2rem}
+        .wt-title{font-size:0.75rem;font-weight:600;color:var(--text-primary);letter-spacing:-0.01em}
+        .wt-desc{font-size:0.66rem;color:var(--text-secondary);margin-top:0.15rem;line-height:1.5}
         .snap-gallery{margin-bottom:1.25rem;position:relative;overflow:clip}
         .snap-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:0.65rem}
         .snap-track{display:flex;gap:0.65rem;padding-bottom:0.5rem;will-change:transform;transition:transform 0.4s var(--ease)}
@@ -540,16 +549,45 @@
                         </div>
                         <div class="exp-body">
                             <div class="exp-body-wrap"><div class="exp-body-inner">
-                                <p class="exp-description">Working directly with the Founder & CEO at an urban mobility startup building India's unified transport platform. Shipping production code across frontend prototyping, backend engineering, and product strategy.</p>
+                                <p class="exp-description">Working directly with the Founder & CEO at an urban mobility startup building India's unified transport platform. Shipping production code across frontend prototyping, backend engineering, security auditing, and product strategy.</p>
+                                <div class="metrics-row" style="margin-top:1rem;margin-bottom:1.25rem">
+                                    <div class="metric-card"><div class="metric-val">49</div><div class="metric-lbl">Files Audited</div></div>
+                                    <div class="metric-card"><div class="metric-val">52/52</div><div class="metric-lbl">Tests Passing</div></div>
+                                    <div class="metric-card"><div class="metric-val">6&#8594;0</div><div class="metric-lbl">Vulnerabilities</div></div>
+                                    <div class="metric-card"><div class="metric-val">80%</div><div class="metric-lbl">Roadmap Done</div></div>
+                                </div>
                                 <ul class="exp-highlights">
-                                    <li>Built a 1,686 line React prototype with a 6 screen mobile app, Leaflet maps, real Chennai transit data across 20 locations and 4 transport modes</li>
-                                    <li>Designed reliability centric UX with Best/Cheapest/Premium tagging, reliability score bars, and MOVZZ guarantee badges</li>
-                                    <li>Restored and refactored the backend fare estimation engine with real Chennai market pricing, surge logic, and tiered cab pricing (52/52 test assertions passing)</li>
-                                    <li>Fixed critical backend regressions: broken imports, silent runtime bugs, and auth response mismatches across services</li>
-                                    <li>Established PR review discipline and code quality standards for the engineering team</li>
+                                    <li>Built a 1,686 line React prototype with a 6 screen mobile flow, Leaflet maps, real Chennai transit data across 20 locations and 4 transport modes</li>
+                                    <li>Engineered a mode specific fare estimation engine with Haversine routing, surge pricing, airport zone detection, and paise precision validated against real Uber/Ola/Rapido rates</li>
+                                    <li>Conducted a full codebase security audit across 49 files, identifying 6 critical and 8 high severity vulnerabilities with a prioritised 3 week remediation roadmap</li>
+                                    <li>Authored an ONDC/Beckn protocol integration proposal with competitive analysis, market validation, and a phased implementation plan</li>
+                                    <li>Fixed critical backend regressions including silent auth failures, broken imports, and runtime bugs across 3 production PRs in a single session</li>
+                                    <li>Reduced backend vulnerabilities from 6 to 0, resolved all ESLint errors, and established PR review discipline for the engineering team</li>
                                 </ul>
+                                <div class="work-timeline">
+                                    <div class="wt-item">
+                                        <div class="wt-date">March 4</div>
+                                        <div class="wt-title">Full Codebase Security Audit</div>
+                                        <div class="wt-desc">Audited 49 files across backend and frontend, flagged 6 critical and 8 high severity vulnerabilities, delivered a prioritised remediation roadmap. Reduced vulnerabilities from 6 to 0.</div>
+                                    </div>
+                                    <div class="wt-item">
+                                        <div class="wt-date">February 26</div>
+                                        <div class="wt-title">Integration Fixes & ONDC Proposal</div>
+                                        <div class="wt-desc">Merged 3 production PRs in a single session fixing silent auth failures and runtime bugs. Authored a strategic ONDC/Beckn protocol integration proposal with market validation.</div>
+                                    </div>
+                                    <div class="wt-item">
+                                        <div class="wt-date">February 24</div>
+                                        <div class="wt-title">Fare Engine & Integration Roadmap</div>
+                                        <div class="wt-desc">Shipped the mode specific fare estimation engine with Haversine routing, surge pricing, and airport zone detection. 52/52 test assertions passing. Authored the 5 phase integration roadmap.</div>
+                                    </div>
+                                    <div class="wt-item">
+                                        <div class="wt-date">February 13</div>
+                                        <div class="wt-title">Frontend Prototype</div>
+                                        <div class="wt-desc">Built a 1,686 line React prototype with 6 screen mobile flow, Leaflet maps, real Chennai transit data across 20 locations and 4 transport modes. Presentation ready for investors.</div>
+                                    </div>
+                                </div>
                                 <div class="tag-row">
-                                    <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MongoDB</span><span class="tag">REST APIs</span><span class="tag">TypeScript</span><span class="tag">Git</span>
+                                    <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MongoDB</span><span class="tag">REST APIs</span><span class="tag">TypeScript</span><span class="tag">Git</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Zustand</span>
                                 </div>
                             </div></div>
                         </div>
