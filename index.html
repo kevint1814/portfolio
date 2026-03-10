@@ -236,6 +236,25 @@
         .metric-card{text-align:center;padding:0.85rem;background:var(--glass-light);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
         .metric-val{font-size:1rem;font-weight:700;letter-spacing:-0.02em}
         .metric-lbl{font-size:0.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-top:0.15rem}
+        .rank-section{margin:1.25rem 0}
+        .rank-section-label{font-size:0.55rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem}
+        .rank-hero{display:flex;align-items:center;gap:1rem;padding:0.9rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);margin-bottom:0.75rem}
+        .rank-hero-badge{font-size:1.6rem;font-weight:800;color:var(--text-primary);line-height:1;letter-spacing:-0.04em;flex-shrink:0}
+        .rank-hero-info{flex:1;display:flex;flex-direction:column;gap:0.15rem}
+        .rank-hero-title{font-size:0.78rem;font-weight:600;color:var(--text-primary)}
+        .rank-hero-sub{font-size:0.58rem;color:var(--text-secondary)}
+        .rank-hero-score{font-size:1.1rem;font-weight:700;color:var(--text-primary);flex-shrink:0;letter-spacing:-0.02em}
+        .rank-hero-score span{font-size:0.6rem;color:var(--text-muted);font-weight:500}
+        .rank-dims{display:grid;grid-template-columns:repeat(3,1fr);gap:0.4rem;margin-bottom:0.75rem}
+        .rank-dim{padding:0.5rem;background:var(--glass-light);border:1px solid var(--border-light);border-radius:var(--radius-sm);text-align:center}
+        .rank-dim-val{font-size:0.88rem;font-weight:700;letter-spacing:-0.02em}
+        .rank-dim-lbl{font-size:0.48rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:0.1rem}
+        .rank-others{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.6rem}
+        .rank-other{display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.65rem;background:var(--glass-light);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+        .rank-other-pos{font-size:0.58rem;font-weight:700;color:var(--text-muted)}
+        .rank-other-name{font-size:0.62rem;font-weight:500;color:var(--text-secondary)}
+        .rank-other-sc{font-size:0.58rem;color:var(--text-muted);margin-left:auto}
+        .rank-note{font-size:0.62rem;color:var(--text-muted);line-height:1.55;font-style:italic}
         .work-timeline{position:relative;padding-left:1.25rem;margin:1.25rem 0}
         .work-timeline::before{content:'';position:absolute;left:0;top:0.35rem;bottom:0.35rem;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.12) 10%,rgba(255,255,255,0.12) 90%,transparent)}
         .wt-item{position:relative;padding-bottom:1rem}
@@ -721,12 +740,40 @@
                         <button class="project-back" data-action="back-to-projects">&larr; Back to Projects</button>
                         <h1 class="section-heading">Seaside Beacon</h1>
                         <img src="assets/sb_land.webp" alt="Seaside Beacon" class="project-detail-img">
-                        <p class="project-detail-desc">India's first native sunrise quality forecast, started with Chennai beaches. Analyzes 9 atmospheric factors using a 3 tier AI failover system (Gemini 2.5 Flash, Groq Llama 3.3 70B, Gemini Flash Lite). Delivers daily 4 AM email forecasts, premium tier with Razorpay payments, and Telegram AI assistant.</p>
+                        <p class="project-detail-desc">India's first native sunrise quality forecast platform, built on a proprietary 9 factor atmospheric scoring algorithm calibrated specifically for tropical maritime climates. Ranked #1 globally across 7 international sunrise prediction platforms, scoring 47/60 across six competitive dimensions. Combines real time weather intelligence from dual data pipelines, a 3 tier AI failover narrative system (Gemini, Groq, deterministic fallback), community driven ground truth validation, and beach specific photography guidance. The entire platform operates at an infrastructure cost of just INR 275/month. Currently live across 4 Chennai beaches with a phased expansion roadmap targeting all major Indian coastal cities and Southeast Asia.</p>
                         <div class="metrics-row">
-                            <div class="metric-card"><div class="metric-val">9</div><div class="metric-lbl">Scoring Factors</div></div>
-                            <div class="metric-card"><div class="metric-val">3 Tier</div><div class="metric-lbl">AI Failover</div></div>
-                            <div class="metric-card"><div class="metric-val">4</div><div class="metric-lbl">Beaches</div></div>
-                            <div class="metric-card"><div class="metric-val">95+</div><div class="metric-lbl">Lighthouse</div></div>
+                            <div class="metric-card"><div class="metric-val">9 Factor</div><div class="metric-lbl">Proprietary Algorithm</div></div>
+                            <div class="metric-card"><div class="metric-val">#1</div><div class="metric-lbl">Global Ranking</div></div>
+                            <div class="metric-card"><div class="metric-val">300+</div><div class="metric-lbl">Test Assertions</div></div>
+                            <div class="metric-card"><div class="metric-val">₹275</div><div class="metric-lbl">Monthly Infra Cost</div></div>
+                        </div>
+                        <div class="rank-section">
+                            <div class="rank-section-label">Competitive Ranking</div>
+                            <div class="rank-hero">
+                                <div class="rank-hero-badge">#1</div>
+                                <div class="rank-hero-info">
+                                    <div class="rank-hero-title">Seaside Beacon</div>
+                                    <div class="rank-hero-sub">Across 7 international sunrise prediction platforms</div>
+                                </div>
+                                <div class="rank-hero-score">47<span>/60</span></div>
+                            </div>
+                            <div class="rank-dims">
+                                <div class="rank-dim"><div class="rank-dim-val">8</div><div class="rank-dim-lbl">Algorithm</div></div>
+                                <div class="rank-dim"><div class="rank-dim-val">4</div><div class="rank-dim-lbl">Coverage</div></div>
+                                <div class="rank-dim"><div class="rank-dim-val">10</div><div class="rank-dim-lbl">Output</div></div>
+                                <div class="rank-dim"><div class="rank-dim-val">8</div><div class="rank-dim-lbl">UX</div></div>
+                                <div class="rank-dim"><div class="rank-dim-val">7</div><div class="rank-dim-lbl">Accuracy</div></div>
+                                <div class="rank-dim"><div class="rank-dim-val">10</div><div class="rank-dim-lbl">Value</div></div>
+                            </div>
+                            <div class="rank-others">
+                                <div class="rank-other"><div class="rank-other-pos">#2</div><div class="rank-other-name">VIEWFINDR</div><div class="rank-other-sc">42</div></div>
+                                <div class="rank-other"><div class="rank-other-pos">#3</div><div class="rank-other-name">SunsetWx</div><div class="rank-other-sc">40</div></div>
+                                <div class="rank-other"><div class="rank-other-pos">#4</div><div class="rank-other-name">Skyfire</div><div class="rank-other-sc">38</div></div>
+                                <div class="rank-other"><div class="rank-other-pos">#5</div><div class="rank-other-name">Alpenglow</div><div class="rank-other-sc">42</div></div>
+                                <div class="rank-other"><div class="rank-other-pos">#6</div><div class="rank-other-name">Sunsethue</div><div class="rank-other-sc">40</div></div>
+                                <div class="rank-other"><div class="rank-other-pos">#7</div><div class="rank-other-name">SkyCandy</div><div class="rank-other-sc">35</div></div>
+                            </div>
+                            <div class="rank-note">Scored across 6 dimensions: algorithm sophistication, coverage, output richness, UX, accuracy, and value. Full methodology and competitive analysis available in the Algorithm &amp; Vision document.</div>
                         </div>
                         <div class="tag-row" style="margin-bottom:1.25rem"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Gemini</span><span class="tag">Groq</span><span class="tag">MongoDB</span><span class="tag">Razorpay</span><span class="tag">Firebase</span><span class="tag">Cloudflare</span></div>
                         <div class="snap-gallery">
@@ -745,6 +792,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://seasidebeacon.com" target="_blank" class="project-link primary">Live Demo</a>
+                            <a href="docs/PDF-Seaside_Beacon_Algorithm_Vision.pdf" target="_blank" class="project-link">Algorithm &amp; Vision</a>
                             <a href="https://github.com/kevint1814/PUBLIC_VIEW_OF_SEASIDE_BEACON" target="_blank" class="project-link">View Repo</a>
                         </div>
                     </div>
