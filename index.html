@@ -603,11 +603,15 @@
                                 </div>
                                 <div class="skill-group">
                                     <div class="sg-label">Frontend</div>
-                                    <div class="sg-items">React, HTML5, CSS3, SwiftUI, Responsive Design</div>
+                                    <div class="sg-items">React, HTML5, CSS3, Responsive Design</div>
                                 </div>
                                 <div class="skill-group">
                                     <div class="sg-label">Backend</div>
-                                    <div class="sg-items">Node.js, Express.js, REST APIs, Prisma, PostgreSQL, MongoDB, MySQL, Redis, Firebase</div>
+                                    <div class="sg-items">Node.js, Express.js, FastAPI, REST APIs, Prisma, PostgreSQL, MongoDB, MySQL, Redis, Firebase</div>
+                                </div>
+                                <div class="skill-group">
+                                    <div class="sg-label">iOS</div>
+                                    <div class="sg-items">SwiftUI, Metal Shaders, CoreMotion, Core Graphics, XcodeGen</div>
                                 </div>
                                 <div class="skill-group">
                                     <div class="sg-label">AI / ML</div>
@@ -615,11 +619,11 @@
                                 </div>
                                 <div class="skill-group">
                                     <div class="sg-label">DevOps</div>
-                                    <div class="sg-items">Vercel, Render, Cloudflare, GitHub Actions, CI/CD, Git</div>
+                                    <div class="sg-items">Vercel, Render, Cloudflare, GitHub Actions, CI/CD, Git, UptimeRobot</div>
                                 </div>
                                 <div class="skill-group">
                                     <div class="sg-label">Tools</div>
-                                    <div class="sg-items">Postman, Jupyter Notebook, Streamlit, Razorpay</div>
+                                    <div class="sg-items">Postman, Jupyter Notebook, Streamlit, Razorpay, Docker</div>
                                 </div>
                             </div>
                         </div>
@@ -720,11 +724,15 @@
                 <div class="section" id="sec-projects">
                     <div id="projects-list">
                         <h1 class="section-heading">Projects & Case Studies</h1>
-                        <p class="section-count">3 Projects</p>
+                        <p class="section-count">4 Projects</p>
                         <div class="projects-grid">
                             <div class="project-card" data-project="seaside">
                                 <img src="assets/sb_land.webp" alt="Seaside Beacon" class="project-img">
                                 <div class="project-info"><div class="project-name">Seaside Beacon</div><div class="project-tags">Node.js, Express, Gemini, MongoDB</div></div>
+                            </div>
+                            <div class="project-card" data-project="vetlayer">
+                                <img src="assets/vl.webp" alt="VetLayer" class="project-img">
+                                <div class="project-info"><div class="project-name">VetLayer</div><div class="project-tags">React, FastAPI, PostgreSQL, LLM Pipelines</div></div>
                             </div>
                             <div class="project-card" data-project="mystique">
                                 <img src="assets/mys.webp" alt="Mystique Log Analysis" class="project-img">
@@ -796,6 +804,28 @@
                             <a href="https://github.com/kevint1814/PUBLIC_VIEW_OF_SEASIDE_BEACON" target="_blank" class="project-link">View Repo</a>
                         </div>
                     </div>
+                    <div class="project-detail" id="detail-vetlayer">
+                        <button class="project-back" data-action="back-to-projects">&larr; Back to Projects</button>
+                        <h1 class="section-heading">VetLayer</h1>
+                        <img src="assets/snaps/vl-dashboard.webp" alt="VetLayer" class="project-detail-img">
+                        <p class="project-detail-desc">A full stack Recruiter Decision Intelligence System designed to transform how hiring teams evaluate technical candidates. VetLayer ingests resumes in any format, parses them through LLM powered pipelines, and produces rich candidate intelligence profiles: 10 section editorial briefs covering executive summaries, strengths, ideal roles, talking points, and more. Five core analysis modules work together to deliver capability scoring on a 1 to 5 scale with resume evidence, 11 category risk detection with editorial descriptions, and targeted interview question generation grounded in actual candidate data. The platform supports concurrent batch analysis, ranking multiple candidates against any job description simultaneously. Version 3.0 introduced a complete JWT authentication system with role based access control (admin and recruiter tiers), an admin panel with audit logging, background processing that halved perceived upload times, and a comprehensive codebase audit that resolved all 30 identified findings across 38 backend files. All six development sprints shipped on schedule, with the final version delivering 22 RESTful API endpoints and 9 production grade frontend pages with zero visible technology references in the client facing interface.</p>
+                        <div class="metrics-row">
+                            <div class="metric-card"><div class="metric-val">5</div><div class="metric-lbl">Analysis Modules</div></div>
+                            <div class="metric-card"><div class="metric-val">22</div><div class="metric-lbl">API Endpoints</div></div>
+                            <div class="metric-card"><div class="metric-val">9</div><div class="metric-lbl">Frontend Pages</div></div>
+                            <div class="metric-card"><div class="metric-val">30</div><div class="metric-lbl">Audit Findings Fixed</div></div>
+                        </div>
+                        <div class="tag-row" style="margin-bottom:1.25rem"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">LLM Pipelines</span><span class="tag">JWT</span><span class="tag">Docker</span><span class="tag">Asyncio</span></div>
+                        <div class="snap-gallery">
+                            <div class="snap-label">Screenshots</div>
+                            <div class="snap-track">
+                                <div class="snap-thumb"><img src="assets/snaps/vl-login.webp" alt="Login"><div class="snap-caption">Authentication</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/vl-dashboard.webp" alt="Dashboard"><div class="snap-caption">Dashboard</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/vl-batch-analysis.webp" alt="Batch Analysis"><div class="snap-caption">Batch Analysis</div></div>
+                                <div class="snap-thumb"><img src="assets/snaps/vl-admin-panel.webp" alt="Admin Panel"><div class="snap-caption">Admin Panel</div></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="project-detail" id="detail-mystique">
                         <button class="project-back" data-action="back-to-projects">&larr; Back to Projects</button>
                         <h1 class="section-heading">Mystique Log Analysis</h1>
@@ -862,7 +892,7 @@
                 <!-- LEADERSHIP -->
                 <div class="section" id="sec-leadership">
                     <h1 class="section-heading">Leadership Experience</h1>
-                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">GS</div><div class="lead-info"><div class="lead-role">General Secretary</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Sep 2025 to Present</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aic.webp" alt="AI Club" class="lead-img"><ul class="lead-highlights"><li>Leading strategic planning and execution of AI focused events, workshops, and technical sessions</li><li>Coordinating between core team leaders, faculty advisors, and external speakers</li><li>Managing club communications and decision making processes</li><li>Driving student engagement and promoting AI awareness across campus</li></ul></div></div></div></div>
+                    <div class="lead-card"><div class="lead-header"><div class="lead-icon">GS</div><div class="lead-info"><div class="lead-role">General Secretary</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai | Best Technical Club Award 2025</div></div><span class="lead-period">Sep 2025 to Present</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aic.webp" alt="AI Club" class="lead-img"><ul class="lead-highlights"><li>Leading strategic planning and execution of AI focused events, workshops, and technical sessions</li><li>Coordinating between core team leaders, faculty advisors, and external speakers</li><li>Managing club communications and decision making processes</li><li>Driving student engagement and promoting AI awareness across campus</li></ul></div></div></div></div>
                     <div class="lead-card"><div class="lead-header"><div class="lead-icon">IQ</div><div class="lead-info"><div class="lead-role">IQAC Student Chapter Member</div><div class="lead-org">Internal Quality Assurance Cell | VIT Chennai</div></div><span class="lead-period">Jan 2026 to Present</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/iqac.webp" alt="IQAC" class="lead-img"><ul class="lead-highlights"><li>Selected by department head to represent university in institutional quality assurance</li><li>Contributing to quality improvement strategies for academic and administrative processes</li><li>Managing Quality Week events and quality driven activities for 2026</li></ul></div></div></div></div>
                     <div class="lead-card"><div class="lead-header"><div class="lead-icon">PR</div><div class="lead-info"><div class="lead-role">Program Representative</div><div class="lead-org">BSc in CS with Data Science | VIT Chennai</div></div><span class="lead-period">Jul 2024 to Present</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/pr.webp" alt="Program Rep" class="lead-img"><ul class="lead-highlights"><li>Acting as liaison between students and faculty for academic matters</li><li>Facilitating effective communication and managing academic concerns</li><li>Representing peer interests in program development decisions</li></ul></div></div></div></div>
                     <div class="lead-card"><div class="lead-header"><div class="lead-icon">OP</div><div class="lead-info"><div class="lead-role">Operations & Management Team</div><div class="lead-org">Artificial Intelligence Club | VIT Chennai</div></div><span class="lead-period">Jan to Sep 2025</span><span class="expand-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div><div class="lead-body"><div class="lead-body-wrap"><div class="lead-body-inner"><img src="assets/aico.webp" alt="AI Club Ops" class="lead-img"><ul class="lead-highlights"><li>Planned and organized AI related events and workshops</li><li>Contributed to operational management and outreach activities</li><li>Served as student coordinator for successful AI based Marketing workshop</li></ul></div></div></div></div>
@@ -1231,11 +1261,12 @@
                 {label:'About',section:'about',hint:'Overview & Skills',icon:'<circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>'},
                 {label:'Education',section:'education',hint:'VIT Chennai, Schooling',icon:'<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/>'},
                 {label:'Experience',section:'experience',hint:'Movzz',icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>'},
-                {label:'Projects',section:'projects',hint:'Seaside Beacon, Mystique, Portfolio',icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'},
+                {label:'Projects',section:'projects',hint:'Seaside Beacon, VetLayer, Mystique, Portfolio',icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'},
                 {label:'Certifications',section:'certifications',hint:'6 Certificates',icon:'<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>'},
                 {label:'Leadership',section:'leadership',hint:'AI Club, IQAC, Hackathons',icon:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'},
                 {label:'Contact',section:'contact',hint:'Get in Touch',icon:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>'},
                 {label:'Seaside Beacon',section:'projects',hint:'Project',icon:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>',extra:'seaside'},
+                {label:'VetLayer',section:'projects',hint:'Project',icon:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',extra:'vetlayer'},
                 {label:'Mystique',section:'projects',hint:'Project',icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',extra:'mystique'},
                 {label:'This Portfolio',section:'projects',hint:'Project',icon:'<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',extra:'portfolio'},
                 {label:'React',section:'experience',hint:'Skill',icon:'<polyline points="16 18 22 12 16 6"/>'},
